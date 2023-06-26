@@ -1,0 +1,8 @@
+# VSCode settings
+.vscode
+
+# Objects
+obj
+
+# Executables
+bin
