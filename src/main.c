@@ -134,14 +134,14 @@ static void change_executable_icon(const char* icon_path, const char* executable
 		return;
 	}
 
-	(void)SetFilePointer(icon_file, image_offset, NULL, 0);
+	(void)SetFilePointer(icon_file, image_offset, NULL, 0L);
 	(void)ReadFile(icon_file, icon_read_buffer, image_size, NULL, NULL);
 	(void)CloseHandle(icon_file);
 
 	*(int16_t*)(icon_info_address + 4ULL)  = 1;
 	*(int16_t*)(icon_info_address + 18ULL) = 1;
 
-	update_resource = BeginUpdateResourceA(executable_path, 0);
+	update_resource = BeginUpdateResourceA(executable_path, 0L);
 	(void)UpdateResourceA(update_resource, (char*)3 , (char*)1, 0L, icon_read_buffer, image_size);
 	(void)UpdateResourceA(update_resource, (char*)14, (char*)1, 0L, icon_info, 20L);
 	(void)EndUpdateResourceA(update_resource, FALSE);
