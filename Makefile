@@ -2,7 +2,7 @@
 # Module history:                                                                                     #
 #   Date:       Author:                    Reason:                                                    #
 #   27.06.2023  Gaina Stefan               Initial version.                                           #
-# Description: This Makefile is used to generate the tool's executable.                                #
+# Description: This Makefile is used to generate the tool's executable.                               #
 #######################################################################################################
 
 CC     = gcc
