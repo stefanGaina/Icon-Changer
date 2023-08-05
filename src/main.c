@@ -2,6 +2,7 @@
  * @file main.c                                                                                       *
  * @date:      @author:                   Reason for change:                                          *
  * 27.06.2023  Gaina Stefan               Initial version.                                            *
+ * 05.08.2023  Gaina Stefan               Made parameterized pointers const.                          *
  * @details This file provides an entry point for the tool and also the algorithm that does the       *
  * change of the icon.                                                                                *
  * @todo N/A.                                                                                         *
@@ -12,7 +13,7 @@
  * HEADER FILE INCLUDES                                                                               *
  *****************************************************************************************************/
 
-#include <Windows.h>
+#include <windows.h>
 #include <inttypes.h>
 #include <stdio.h>
 
@@ -29,6 +30,11 @@
  * @brief The minor version of the tool.
 */
 #define VERSION_MINOR 0
+
+/**
+ * @brief The patch version of the tool.
+*/
+#define VERSION_PATCH 1
 
 /******************************************************************************************************
  * FUNCTION PROTOTYPES                                                                                *
@@ -59,7 +65,7 @@ int main(int argc, char* argv[])
 {
 	if (2L == argc && 0L == strcmp("--version", argv[1]))
 	{
-		(void)fprintf(stdout, "Icon-Changer version %" PRId32 ".%" PRId32 "!\n", VERSION_MAJOR, VERSION_MINOR);
+		(void)fprintf(stdout, "Icon-Changer version %" PRId32 ".%" PRId32 " .%" PRId32 "!\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH);
 		return EXIT_SUCCESS;
 	}
 
@@ -90,7 +96,7 @@ int main(int argc, char* argv[])
  * FUNCTION DEFINITIONS                                                                               *
  *****************************************************************************************************/
 
-static void change_executable_icon(const char* icon_path, const char* executable_path)
+static void change_executable_icon(const char* const icon_path, const char* const executable_path)
 {
 	void*   icon_file         = CreateFileA(icon_path, 0x80000000L, 0L, NULL, 3L, 0L, NULL);
 	void*   icon_info         = NULL;

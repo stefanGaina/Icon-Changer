@@ -2,6 +2,7 @@
 # Module history:                                                                                     #
 #   Date:       Author:                    Reason:                                                    #
 #   27.06.2023  Gaina Stefan               Initial version.                                           #
+#   05.08.2023  Gaina Stefan               Removed unnecessary comment.                               #
 # Description: This Makefile is used to generate the tool's executable.                               #
 #######################################################################################################
 
@@ -16,7 +17,6 @@ SOURCES    := $(wildcard $(SRC)/*.c)
 OBJECTS    := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 EXECUTABLE := icon-changer.exe
 
-### DEVELOPMENT ###
 all: | create_dirs $(EXECUTABLE)
 
 ### CREATE DIRECTORIES ###
