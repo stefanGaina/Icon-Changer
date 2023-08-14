@@ -1,38 +1,44 @@
 #######################################################################################################
 # Module history:                                                                                     #
 #   Date:       Author:                    Reason:                                                    #
-#   27.06.2023  Gaina Stefan               Initial version.                                           #
-#   05.08.2023  Gaina Stefan               Removed unnecessary comment.                               #
-# Description: This Makefile is used to generate the tool's executable.                               #
+#   14.08.2023  Gaina Stefan               Initial version.                                           #
+# Description: This Makefile is used to invoke the Makefiles in the subdirectories.                   #
 #######################################################################################################
 
-CC     = gcc
-CFLAGS = -Wall -Werror 
+export CC = gcc
 
-SRC := src
-OBJ := obj
-BIN := bin
+export SRC := src
+export OBJ := obj
+export LIB := lib
+export BIN := bin
 
-SOURCES    := $(wildcard $(SRC)/*.c)
-OBJECTS    := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
-EXECUTABLE := icon-changer.exe
+export COVERAGE_REPORT := coverage_report
 
-all: | create_dirs $(EXECUTABLE)
+GENHTML       = vendor/lcov/genhtml.perl
+GENHTML_FLAGS = --branch-coverage --num-spaces=4 --output-directory $(COVERAGE_REPORT)/
 
-### CREATE DIRECTORIES ###
-create_dirs:
-	if not exist "$(OBJ)" mkdir $(OBJ)
-	if not exist "$(BIN)" mkdir $(BIN)
+INFO_FILES = $(COVERAGE_REPORT)/icon-changer.info
 
-### BINARIES ###
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(CFLAGS) -o $(BIN)/$@ $^
+### MAKE SUBDIRECTORIES ###
+all:
+	$(MAKE) -C icon-changer
 
-### OBJECTS ###
-$(OBJ)/%.o: $(SRC)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-### CLEAN ###
+### CLEAN SUBDIRECTORIES ###
 clean:
-	del /f /q $(OBJ)\*
-	del /f /q $(BIN)\*
+	$(MAKE) clean -C icon-changer
+
+### MAKE UNIT-TESTS ###
+ut: create_dir
+	$(MAKE) -C unit-tests
+	$(MAKE) run_tests -C unit-tests
+	perl $(GENHTML) $(INFO_FILES) $(GENHTML_FLAGS)
+
+### CREATE DIRECTORY ###
+create_dir:
+	if not exist "$(COVERAGE_REPORT)" mkdir $(COVERAGE_REPORT)
+
+### CLEAN UNIT-TESTS ###
+ut-clean: detect_os
+	$(RM) $(COVERAGE_REPORT)\*
+	$(RM) $(COVERAGE_REPORT)\src\*
+	rd /s /q $(COVERAGE_REPORT)\src
