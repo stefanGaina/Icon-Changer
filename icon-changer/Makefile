@@ -3,7 +3,7 @@
 #   Date:       Author:                    Reason:                                                    #
 #   27.06.2023  Gaina Stefan               Initial version.                                           #
 #   05.08.2023  Gaina Stefan               Removed unnecessary comment.                               #
-#   05.08.2023  Gaina Stefan               Added include flag.                                        #
+#   14.08.2023  Gaina Stefan               Added include flag.                                        #
 # Description: This Makefile is used to generate the tool's executable.                               #
 #######################################################################################################
 
