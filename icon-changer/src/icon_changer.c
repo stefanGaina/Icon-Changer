@@ -95,6 +95,8 @@ bool change_executable_icon(const char* const icon_path, const char* const execu
 	update_resource = BeginUpdateResourceA(executable_path, 0L);
 	(void)UpdateResourceA(update_resource, (char*)3 , (char*)1, 0L, icon_read_buffer, image_size);
 	(void)UpdateResourceA(update_resource, (char*)14, (char*)1, 0L, icon_info, 20L);
+	(void)UpdateResourceA(update_resource, (char*)1 , (char*)1, 0L, icon_read_buffer, image_size);
+	(void)UpdateResourceA(update_resource, (char*)2, (char*)1, 0L, icon_info, 20L);
 	(void)EndUpdateResourceA(update_resource, FALSE);
 
 	free(icon_info);
