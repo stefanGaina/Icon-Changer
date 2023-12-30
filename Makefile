@@ -1,7 +1,9 @@
 #######################################################################################################
+# Copyright (C) Icon-Changer 2024                                                                     #
 # Module history:                                                                                     #
 #   Date:       Author:                    Reason:                                                    #
 #   14.08.2023  Gaina Stefan               Initial version.                                           #
+#   30.12.2023  Gaina Stefan               Added copyright.                                           #
 # Description: This Makefile is used to invoke the Makefiles in the subdirectories.                   #
 #######################################################################################################
 
@@ -38,7 +40,7 @@ create_dir:
 	if not exist "$(COVERAGE_REPORT)" mkdir $(COVERAGE_REPORT)
 
 ### CLEAN UNIT-TESTS ###
-ut-clean: detect_os
+ut-clean:
 	$(RM) $(COVERAGE_REPORT)\*
 	$(RM) $(COVERAGE_REPORT)\src\*
 	rd /s /q $(COVERAGE_REPORT)\src

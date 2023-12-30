@@ -1,13 +1,15 @@
 #######################################################################################################
+# Copyright (C) Icon-Changer 2024                                                                     #
 # Module history:                                                                                     #
 #   Date:       Author:                    Reason:                                                    #
 #   27.06.2023  Gaina Stefan               Initial version.                                           #
 #   05.08.2023  Gaina Stefan               Removed unnecessary comment.                               #
 #   14.08.2023  Gaina Stefan               Added include flag.                                        #
+#   30.12.2023  Gaina Stefan               Added copyright.                                           #
 # Description: This Makefile is used to generate the tool's executable.                               #
 #######################################################################################################
 
-CFLAGS = -Wall -Werror 
+CFLAGS = -Wall -Werror
 
 INCLUDES = -Iinclude/
 
