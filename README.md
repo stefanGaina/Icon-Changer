@@ -2,7 +2,7 @@
 *Icon changer* is a Windows tool for changing an executable's icon.
 # Usage
 You can download the latest released binary or (gcc and make are required to be installed):
-- git clone git@github.com:stefanGaina/Icon-Changer.git
+- git clone https://github.com/stefanGaina/Icon-Changer.git
 - cd *Icon-Changer*
 - make
 
